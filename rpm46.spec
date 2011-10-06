@@ -55,7 +55,7 @@
 Summary:	The RPM package management system
 Name:		rpm46
 Version:	%{rpmversion}
-%define subrel 1
+%define subrel 2
 Release:	%mkrel 0
 Group:		System/Configuration/Packaging
 Source:		http://www.rpm.org/releases/rpm-%{libver}.x/rpm-%{srcver}.tar.bz2
@@ -177,6 +177,8 @@ Patch3001: fix_stack_protector_check.patch
 Patch3002: mips_define_isa_macros.patch
 Patch3003: rpm_arm_mips_isa_macros.patch
 Patch3004: rpm_add_armv5tl.patch
+Patch3005: rpm-4.6.0-CVE-2011-3378.diff
+
 License:	GPL
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	zlib-devel
