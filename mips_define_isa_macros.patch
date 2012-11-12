@@ -1,0 +1,26 @@
+Don't know if the change is breaking something but it's a little
+bit better than no value at all. I'm not even sure of how to handle
+n32 :(
+---
+ installplatform |    8 	8 +	0 -	0 !
+ 1 file changed, 8 insertions(+)
+
+Index: rpm-4.6.0/installplatform
+===================================================================
+--- rpm-4.6.0.orig/installplatform	2009-01-28 06:31:06.000000000 -0500
++++ rpm-4.6.0/installplatform	2009-04-08 08:58:42.000000000 -0400
+@@ -124,6 +124,14 @@ for SUBST in $SUBSTS ; do
+ 	ISANAME=`echo ${ARCH} | sed "s/^\([^-]*\)-.*/\1/"`
+ 	ISABITS=32
+ 	;;
++    mipsel)
++        ISANAME=mipsel
++	ISABITS=32
++	;;
++    mips)
++        ISANAME=mips
++	ISABITS=32
++	;;
+   esac
+ 
+   if [ -n "$MULTILIBNO" ]; then

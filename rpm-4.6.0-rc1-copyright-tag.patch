@@ -1,0 +1,24 @@
+From 8811a8f736637a929c2e29c921c93bdb443bcc22 Mon Sep 17 00:00:00 2001
+From: unknown author <cooker@mandrivalinux.org>
+Date: Mon, 5 Jan 2009 13:29:57 +0000
+Subject: [PATCH 32/35] copyright tag
+
+---
+ build/parsePreamble.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+diff --git a/build/parsePreamble.c b/build/parsePreamble.c
+index ae6127d..8a95bc4 100644
+--- a/build/parsePreamble.c
++++ b/build/parsePreamble.c
+@@ -704,6 +704,7 @@ static struct PreambleRec_s preambleList[] = {
+     {RPMTAG_EPOCH,		0, 0, 0, "epoch"},
+     {RPMTAG_EPOCH,		0, 0, 0, "serial"},
+     {RPMTAG_SUMMARY,		0, 1, 0, "summary"},
++    {RPMTAG_LICENSE,		0, 0, 0, "copyright"},
+     {RPMTAG_LICENSE,		0, 0, 0, "license"},
+     {RPMTAG_DISTRIBUTION,	0, 0, 0, "distribution"},
+     {RPMTAG_DISTURL,		0, 0, 0, "disturl"},
+-- 
+1.6.1.3
+

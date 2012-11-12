@@ -1,0 +1,23 @@
+Index: rpm-4.6.0/installplatform
+===================================================================
+--- rpm-4.6.0.orig/installplatform	2009-06-16 12:12:12.000000000 +0000
++++ rpm-4.6.0/installplatform	2009-06-16 12:19:19.000000000 +0000
+@@ -120,8 +120,16 @@
+ 	ISANAME=sh
+ 	ISABITS=32
+ 	;;
+-    arm*)
+-	ISANAME=`echo ${ARCH} | sed "s/^\([^-]*\)-.*/\1/"`
++    arm*b)
++	ISANAME=armeb
++	ISABITS=32
++	;;
++    arm)
++	ISANAME=armel
++	ISABITS=32
++	;;
++    arm*l)
++	ISANAME=armel
+ 	ISABITS=32
+ 	;;
+     mipsel)

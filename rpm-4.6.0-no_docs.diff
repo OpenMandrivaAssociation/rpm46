@@ -1,0 +1,57 @@
+--- a/Makefile.am	2011-09-29 12:59:41.000000000 +0200
++++ b/Makefile.am.oden	2011-09-29 13:01:04.000000000 +0200
+@@ -19,9 +19,9 @@
+ if WITH_LUAEXT
+ SUBDIRS += luaext
+ endif
+-SUBDIRS += rpmio lib build python scripts doc . tests
++SUBDIRS += rpmio lib build python scripts . tests
+ 
+-DIST_SUBDIRS = po misc luaext rpmio lib build python scripts doc tests
++DIST_SUBDIRS = po misc luaext rpmio lib build python scripts  tests
+ 
+ pkgconfigdir = $(libdir)/pkgconfig
+ 
+@@ -216,42 +216,6 @@
+ 
+ MAINTAINERCLEANFILES = ChangeLog
+ 
+-# Build hacking docs only on request
+-if HACKINGDOCS
+-if DOXYGEN
+-doc/hacking.doxy: doc/hacking.doxy.in doc/hacking/Doxyheader Makefile.am
+-	$(SED) \
+-	  -e "s,\@top_srcdir\@/,$(top_srcdir)/,g" \
+-	  -e "s,[@]HAVE_DOT[@],$(HAVE_DOT)," \
+-	  -e "s,[@]PACKAGE[@],$(PACKAGE)," \
+-	  -e "s,[@]VERSION[@],$(VERSION)," \
+-	< $(top_srcdir)/doc/hacking.doxy.in > doc/hacking.doxy
+-
+-doc/hacking/html/index.html: doc/hacking.doxy rpmpopt-@VERSION@
+-	@DOXYGEN@ doc/hacking.doxy
+-noinst_DATA += doc/hacking/html/index.html
+-endif
+-endif
+-EXTRA_DIST += doc/hacking.doxy.in doc/hacking/Doxyheader
+-
+-# Always build librpm docs
+-if DOXYGEN
+-doc/librpm.doxy: doc/librpm.doxy.in doc/librpm/Doxyheader Makefile.am $(pkginclude_HEADERS)
+-	files=`echo " $(HEADERS)" | $(SED) -e "s, , \@top_srcdir\@/,g"`; \
+-	$(SED) -e "s,[@]pkginclude_HEADERS[@],$$files," \
+-	  -e "s,\@top_srcdir\@/,$(top_srcdir)/,g" \
+-	  -e "s,[@]HAVE_DOT[@],$(HAVE_DOT)," \
+-	  -e "s,[@]PACKAGE[@],$(PACKAGE)," \
+-	  -e "s,[@]VERSION[@],$(VERSION)," \
+-	< $(top_srcdir)/doc/librpm.doxy.in > doc/librpm.doxy
+-
+-doc/librpm/html/index.html: doc/librpm.doxy
+-	@DOXYGEN@ doc/librpm.doxy
+-noinst_DATA += doc/librpm/html/index.html
+-endif
+-EXTRA_DIST += doc/librpm.doxy.in doc/librpm/Doxyheader
+-EXTRA_DIST += doc/librpm/html
+-
+ if WITH_INTERNAL_DB
+ db.h:	$(top_builddir)/db3/db.h
+ 	$(LN_S) $(top_builddir)/db3/db.h $@
