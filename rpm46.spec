@@ -9,8 +9,8 @@
     %define _lib lib
 %endif
 
-%if %{?apply_patches:0}%{?!apply_patches:1}
-%define apply_patches %(for p in `grep '^Patch.*:' "%{_specdir}/rpm.spec" | cut -d':' -f2-`; do echo "patch -p1 -F0 -i %{_sourcedir}/$p"; done )
+%if %{?autopatch -p1:0}%{?!autopatch -p1:1}
+%define autopatch -p1 %(for p in `grep '^Patch.*:' "%{_specdir}/rpm.spec" | cut -d':' -f2-`; do echo "patch -p1 -F0 -i %{_sourcedir}/$p"; done )
 %endif
 
 # Define directory which holds rpm config files, and some binaries actually
@@ -126,7 +126,7 @@ Patch151: rpm-4.6.0-rc1-protect-against-non-robust-futex.patch
 Patch152: rpm-4.6.0-rc1-fix-nss-detection.patch
 Patch157: introduce-_after_setup-which-is-called-after-setup.patch
 Patch158: introduce-_patch-and-allow-easy-override-when-the-p.patch
-Patch159: introduce-apply_patches-and-lua-var-patches_num.patch
+Patch159: introduce-autopatch -p1-and-lua-var-patches_num.patch
 # fixes backported from 4.7.1, see patch files for full changelog entries
 # fixes ignored Requires(pre) and (post) when they have a plain Requires counterpart
 Patch161: rpm-fix-corequisites.patch
@@ -314,7 +314,7 @@ programs that will manipulate RPM packages and databases.
 %prep
 
 %setup -q -n rpm-%srcver
-%apply_patches
+%autopatch -p1
 
 # hardcoded crap!
 for i in `find . -type f -name "*"`; do
