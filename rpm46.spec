@@ -231,7 +231,7 @@ Conflicts:	man-pages-pl < 0.4-9mdk
 Conflicts:	perl-URPM < 1.63-3mdv2008.0
 # rpm 4.6.0 dropped support for --repackage, so urpmi-recover can not work anymore:
 Conflicts:	urpmi-recover
-URL:            http://rpm.org/
+URL:            https://rpm.org/
 %define         git_url        http://rpm.org/git/rpm.git
 Requires(pre):		rpm-helper >= 0.8
 Requires(pre):		coreutils
